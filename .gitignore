@@ -1,0 +1,15 @@
+#Temp Files
+*.cpp~
+*.h~
+
+#Compiled
+*.out
+
+#CodeBlock Files
+*.cbp
+*.layout
+include/
+src/
+obj/
+bin/
+*.depend
