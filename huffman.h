@@ -11,11 +11,28 @@ using namespace std;
 class Huffman
 {
     public:
-        Huffman(char[] = " " );
-        char input[5000];
-    private:
+        Huffman(char[] = " ", char[] = " ");
 
-        int charCount[256];
+    private:
+        // functions
+        void buildFrequencyTable();
+        void buildHuffmanTree();
+        void sortNodeForrest();
+
+        // data
+        struct Node{
+            char character;
+            int frequency;
+            struct Node* left;
+            struct Node* right;
+        };
+        static const int CHAR_SET_SIZE = 256;
+        static const int MAX_INPUT_LEN = 5000;
+        struct Node* root;
+        char input[MAX_INPUT_LEN + 1];
+        int charCount[CHAR_SET_SIZE];
+        Node* nodeForrest[CHAR_SET_SIZE];
+        int forrestSize;
 };
 
 
