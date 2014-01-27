@@ -18,6 +18,7 @@ class Huffman
         void buildFrequencyTable();
         void buildHuffmanTree();
         void sortNodeForrest();
+        void buildCodeTable();
 
         // data
         struct Node{
@@ -33,6 +34,7 @@ class Huffman
         int charCount[CHAR_SET_SIZE];
         Node* nodeForrest[CHAR_SET_SIZE];
         int forrestSize;
+        int codeTable[CHAR_SET_SIZE];
 };
 
 

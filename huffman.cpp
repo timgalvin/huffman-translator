@@ -21,6 +21,7 @@ Huffman::Huffman(char input[], char code[])
 
     buildFrequencyTable();
     buildHuffmanTree();
+    buildCodeTable();
 }
 
 void Huffman::buildFrequencyTable()
@@ -66,13 +67,14 @@ void Huffman::buildHuffmanTree()
     while (forrestSize > 1) {
         // take lowest two scores, make children of a new parent, then
         struct Node* parent = new Node();
-        parent->left = nodeForrest[forrestSize];
-        parent->right = nodeForrest[forrestSize - 1];
+        parent->left = nodeForrest[forrestSize - 1];
+        parent->right = nodeForrest[forrestSize - 2];
         parent->frequency = parent->left->frequency + parent->right->frequency;
 
         // insert new node to forrest and resort
-        nodeForrest[forrestSize - 1] = parent;
-        nodeForrest[forrestSize--] = NULL;
+        nodeForrest[forrestSize - 2] = parent;
+        nodeForrest[forrestSize - 1] = NULL;
+        forrestSize--;
         sortNodeForrest();
     }
 }
@@ -93,6 +95,11 @@ void Huffman::sortNodeForrest()
             }
         }
     }
+}
+
+void Huffman::buildCodeTable()
+{
+
 }
 
 
