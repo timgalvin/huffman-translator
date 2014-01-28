@@ -143,8 +143,11 @@ void Huffman::buildCodeTableHelper(struct Node* sub, string code)
 void Huffman::displayEncodedBinary()
 {
     cout << encBinaryMessage;
+    if (charCount[32]) {
+        cout << "@@@" << "space: " << codeTable[32];
+    }
     for (int i = 0; i < CHAR_SET_SIZE; i++) {
-        if (charCount[i]) {
+        if (charCount[i] && (i != 32)) {
             cout << "@@@" << char (i) << ": " << codeTable[i];
         }
     }
