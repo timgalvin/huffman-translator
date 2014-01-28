@@ -1,5 +1,5 @@
 // File - huffman.h
-// A tool to encode and decode strings using Huffman algorithm
+// A tool to encode strings using Huffman algorithm
 // Tim Galvin
 
 #ifndef HUFFMAN_H
