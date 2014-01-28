@@ -151,7 +151,19 @@ void Huffman::displayEncodedBinary()
             cout << "@@@" << char (i) << ": " << codeTable[i];
         }
     }
+}
 
+int main(int argc, char* argv[])
+{
+    if (argc == 2) {
+        Huffman* huff = new Huffman(argv[1]);
+    }
+    else if (argc == 3) {
+        // future decode mode
+    }
+    else {
+	// default
+    }
 }
 
 
