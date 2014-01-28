@@ -22,6 +22,7 @@ Huffman::Huffman(char input[], char code[])
     buildFrequencyTable();
     buildHuffmanTree();
     buildCodeTable();
+    displayEncodedBinary();
 }
 
 void Huffman::buildFrequencyTable()
@@ -77,6 +78,8 @@ void Huffman::buildHuffmanTree()
         forrestSize--;
         sortNodeForrest();
     }
+    root = nodeForrest[0];
+    nodeForrest[0] = NULL;
 }
 
 void Huffman::sortNodeForrest()
@@ -99,9 +102,54 @@ void Huffman::sortNodeForrest()
 
 void Huffman::buildCodeTable()
 {
+    // do traversal of tree
+    // pass code so far to next recursive instance, with child included
+    buildCodeTableHelper(root, "");
 
+    //test code
+    /*cout << "Testing code table------" << endl;
+    for (int i = 0; i < CHAR_SET_SIZE; i++) {
+        if (charCount[i]) {
+            cout << char (i) << ": " << codeTable[i] << endl;
+        }
+    }
+    cout << "------------------------" << endl << endl;*/
+    // build encoded binary string
+    char ch = input[0];
+    int place = 0;
+    while (ch != '\0' && place < MAX_INPUT_LEN) {
+        encBinaryMessage += codeTable[int (ch)];
+        ch = input[++place];
+    }
 }
 
+void Huffman::buildCodeTableHelper(struct Node* sub, string code)
+{
+    // if at a leaf, record a code
+    if (!(sub->left || sub->right)) {
+        int targetIndex = int (sub->character);
+        codeTable[targetIndex] = code;
+    }
+
+    // if not a leaf, continue
+    if (sub->left) {
+        buildCodeTableHelper(sub->left, (code + "0"));
+    }
+    if (sub->right) {
+        buildCodeTableHelper(sub->right, (code + "1"));
+    }
+}
+
+void Huffman::displayEncodedBinary()
+{
+    cout << encBinaryMessage;
+    for (int i = 0; i < CHAR_SET_SIZE; i++) {
+        if (charCount[i]) {
+            cout << "@@@" << char (i) << ": " << codeTable[i];
+        }
+    }
+
+}
 
 
 

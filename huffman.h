@@ -5,6 +5,7 @@
 #ifndef HUFFMAN_H
 #define HUFFMAN_H
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -14,12 +15,6 @@ class Huffman
         Huffman(char[] = " ", char[] = " ");
 
     private:
-        // functions
-        void buildFrequencyTable();
-        void buildHuffmanTree();
-        void sortNodeForrest();
-        void buildCodeTable();
-
         // data
         struct Node{
             char character;
@@ -34,7 +29,16 @@ class Huffman
         int charCount[CHAR_SET_SIZE];
         Node* nodeForrest[CHAR_SET_SIZE];
         int forrestSize;
-        int codeTable[CHAR_SET_SIZE];
+        string codeTable[CHAR_SET_SIZE];
+        string encBinaryMessage;
+
+        // functions
+        void buildFrequencyTable();
+        void buildHuffmanTree();
+        void sortNodeForrest();
+        void buildCodeTable();
+        void buildCodeTableHelper(Node*, string);
+        void displayEncodedBinary();
 };
 
 
