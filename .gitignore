@@ -13,3 +13,5 @@ src/
 obj/
 bin/
 *.depend
+
+huffman
